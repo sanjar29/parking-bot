@@ -1,6 +1,5 @@
 import time
 import os
-BOT_TOKEN = os.getenv("BOT_TOKEN")
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -17,11 +16,10 @@ EMAIL = "sanjar29@colostate.edu"
 
 def register_car():
     options = Options()
-    options.add_argument("--headless")           # Run without opening Chrome
+    options.add_argument("--headless")           # run in background
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
 
-    # Path to ChromeDriver (cloud will usually have it installed at /usr/bin/chromedriver)
     driver = webdriver.Chrome(service=Service("/usr/bin/chromedriver"), options=options)
     driver.get("https://www.register2park.com/")
 
@@ -72,7 +70,7 @@ def handle_message(update: Update, context: CallbackContext):
         update.message.reply_text("✅ Done! Car registered for 24 hours.")
 
 # --- TELEGRAM BOT SETUP ---
-BOT_TOKEN = "8390003884:AAEtvGqdyJFSE5RuLAuqAogiITpOVPGw7QU"  # <--- paste your BotFather token here
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # read token from environment
 updater = Updater(BOT_TOKEN, use_context=True)
 dp = updater.dispatcher
 dp.add_handler(CommandHandler("start", start))
