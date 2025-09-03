@@ -1,4 +1,6 @@
 import time
+import os
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
